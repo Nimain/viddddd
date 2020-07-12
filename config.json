@@ -1,0 +1,16 @@
+{
+  "socketURL": "/",
+  "dirPath": "",
+  "homePage": "/meeting/index.html",
+  "socketMessageEvent": "RTCMultiConnection-Message",
+  "socketCustomEvent": "RTCMultiConnection-Custom-Message",
+  "port": "8080",
+  "enableLogs": "false",
+  "autoRebootServerOnFailure": "false",
+  "isUseHTTPs": "false",
+
+  "sslCabundle": "",
+  "enableAdmin": "true",
+  "adminUserName": "Nimain",
+  "adminPassword": "Checkin"
+}
