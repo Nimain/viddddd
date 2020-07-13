@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+    <script type="text/javascript">
+        if(location.protocol === 'http:' && document.domain === 'rtcmulticonnection.herokuapp.com') {
+          location.href = location.href.replace('http:', 'https:');
+        }
+      </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -46,9 +51,10 @@
     <main class="main hidden">
         <!-- =========== Start of Navigation (main menu) ============ -->
         <header class="navbar navbar-sticky navbar-expand-lg navbar-light">
+            <!-- <a class="logo" href="/"><img src="/meeting/logo.png" alt="RTCMultiConnection"></a> -->
             <div class="container-fluid position-relative">
                 <a class="navbar-brand" href="index.html">
-                    <img class="navbar-brand__regular" src="/meeting/brandlogo.png" alt="brandlogo">
+                    <img class="navbar-brand__regular" src="/meeting/brandlogo.png" alt="RTCMultiConnection">
                     <img class="navbar-brand__sticky" src="/meeting/brandlogo.png" alt="sticky brand-logo">
                 </a>
                 <!--  End of brand logo -->
