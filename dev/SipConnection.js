@@ -1,4 +1,4 @@
-// github.com/muaz-khan/RTCMultiConnection/issues/ => #137 and #706
+
 
 function SipConnection(connection, connectCallback) {
     function isData(session) {

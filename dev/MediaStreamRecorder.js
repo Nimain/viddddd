@@ -2643,12 +2643,6 @@ if (typeof MediaStreamRecorder !== 'undefined') {
 
 // Last time updated at Nov 18, 2014, 08:32:23
 
-// Latest file can be found here: https://cdn.webrtc-experiment.com/ConcatenateBlobs.js
-
-// Muaz Khan    - www.MuazKhan.com
-// MIT License  - www.WebRTC-Experiment.com/licence
-// Source Code  - https://github.com/muaz-khan/ConcatenateBlobs
-// Demo         - https://www.WebRTC-Experiment.com/ConcatenateBlobs/
 
 // ___________________
 // ConcatenateBlobs.js

@@ -3,7 +3,7 @@
 // ________________________
 // MultiStreamsMixer v1.0.3
 
-// Open-Sourced: https://github.com/muaz-khan/MultiStreamsMixer
+
 
 // --------------------------------------------------
 // Muaz Khan     - www.MuazKhan.com

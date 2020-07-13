@@ -2,9 +2,7 @@
 
 // Latest file can be found here: https://cdn.webrtc-experiment.com/Plugin.EveryWhere.js
 
-// Muaz Khan         - www.MuazKhan.com
-// MIT License       - www.WebRTC-Experiment.com/licence
-// Source Codes      - https://github.com/muaz-khan/PluginRTC
+
 
 // _____________________
 // Plugin.EveryWhere.js

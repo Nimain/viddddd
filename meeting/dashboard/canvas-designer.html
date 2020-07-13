@@ -71,7 +71,7 @@ input[disabled], button[disabled] {
 }
 
 #other-videos video {
-    width: 45%;
+    width: 100%;
     margin: 5px;
     border: 1px solid black;
     padding: 1px;
@@ -221,42 +221,42 @@ connection.maxParticipantsAllowed = 1000;
 var designer = new CanvasDesigner();
 
 // you can place widget.html anywhere
-designer.widgetHtmlURL = '/node_modules/canvas-designer/widget.html';
-designer.widgetJsURL = '/node_modules/canvas-designer/widget.min.js'
+// designer.widgetHtmlURL = '/node_modules/canvas-designer/widget.html';
+// designer.widgetJsURL = '/node_modules/canvas-designer/widget.min.js'
 
-designer.addSyncListener(function(data) {
-    connection.send(data);
-});
+// designer.addSyncListener(function(data) {
+//     connection.send(data);
+// });
 
-designer.setSelected('pencil');
+// designer.setSelected('pencil');
 
-designer.setTools({
-    pencil: true,
-    text: true,
-    image: true,
-    pdf: true,
-    eraser: true,
-    line: true,
-    arrow: true,
-    dragSingle: true,
-    dragMultiple: true,
-    arc: true,
-    rectangle: true,
-    quadratic: false,
-    bezier: true,
-    marker: true,
-    zoom: false,
-    lineWidth: false,
-    colorsPicker: false,
-    extraOptions: false,
-    code: false,
-    undo: true
-});
+// designer.setTools({
+//     pencil: false,
+//     text: false,
+//     image: false,
+//     pdf: false,
+//     eraser: false,
+//     line: false,
+//     arrow: false,
+//     dragSingle: false,
+//     dragMultiple: false,
+//     arc: false,
+//     rectangle: false,
+//     quadratic: false,
+//     bezier: false,
+//     marker: false,
+//     zoom: false,
+//     lineWidth: false,
+//     colorsPicker: false,
+//     extraOptions: false,
+//     code: false,
+//     undo: false
+// });
 
 // here goes RTCMultiConnection
 
-connection.chunkSize = 16000;
-connection.enableFileSharing = true;
+//connection.chunkSize = 16000;
+//connection.enableFileSharing = true;
 
 connection.session = {
     audio: true,
@@ -276,7 +276,7 @@ connection.onUserStatusChanged = function(event) {
     });
 
     if (!names.length) {
-        names = ['Only You'];
+        names = ['Me'];
     } else {
         names = [connection.extra.userFullName || 'You'].concat(names);
     }
@@ -769,7 +769,7 @@ $('#btn-share-screen').click(function() {
         return;
     }
 
-    $('#btn-share-screen').hide();
+    $('#btn-share-screen').show();
 
     if(navigator.mediaDevices.getDisplayMedia) {
         navigator.mediaDevices.getDisplayMedia(screen_constraints).then(stream => {
