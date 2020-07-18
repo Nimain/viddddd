@@ -3,13 +3,32 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
   <title>EBIC meeting Video Conferencing</title>
   <meta name="description" content="WebRTC Dashboard including support for canvas drawing, canvas data syncing, video conferencing, screen sharing and video conferencing. Including chat and file sharing.">
 
   <link rel="shortcut icon" href="/meeting/logo.png">
   <link rel="stylesheet" type="text/css" href="/meeting/css/emojionearea.min.css">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <!-- fonts -->
+  <link href="/meeting/fonts/sfuidisplay.css" rel="stylesheet">
+  <!-- Icon fonts -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <!-- Plugins CSS -->
+  <link rel="stylesheet" href="/meeting/css/plugins.min.css">
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="/meeting/css/app.css">
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="/meeting/css/custom.css">
+
+
 
   <script src="/meeting/js/jquery.min.js"></script>
   <link href="/meeting/css/bootstrap.min.css" rel="stylesheet">
@@ -52,7 +71,12 @@ input[disabled], button[disabled] {
 }
 </style>
 </head>
-<body>
+
+<body class="theme-royal-blue" data-spy="scroll" data-target="#navbar-nav" data-appearance="light" data-animation="false" data-appearance="light">
+<!-- <body> -->
+
+
+    
 <style>
 .extra-controls {
     position: absolute;
@@ -153,13 +177,30 @@ hr {
     display: none;
 }
 </style>
+ <section class="make-center">
+    <div id="videos-container" style="margin: 20px 0;"></div>
+    <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
+  </section> 
+
+
+  <script src="/dist/RTCMultiConnection.min.js"></script>
+<script src="/node_modules/webrtc-adapter/out/adapter.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<!-- custom layout for HTML5 audio/video elements -->
+<link rel="stylesheet" href="/dev/getHTMLMediaElement.css">
+<script src="/dev/getHTMLMediaElement.js"></script>
+
+
+
+
 
 <article>
 
-<div id="widget-container" style="position: fixed;bottom: 0;right: 0;left: 20%;height: 100%;border: 1px solid black; border-top:0; border-bottom: 0;"></div>
-<video id="screen-viewer" controls playsinline autoplay></video>
+ <div id="widget-container" style="position: fixed;bottom: 0;right: 0;left: 100%;height: 100%;border: 1px solid black; border-top:0; border-bottom: 0;"></div>
+<video id="screen-viewer" controls playsinline autoplay></video> 
 
-<div style="width: 20%; height: 100%; position: absolute;left:0;">
+<div style="width: 20%; height: 100%; position: absolute;left:40%">
     <video id="main-video" controls playsinline autoplay></video>
     <div id="other-videos"></div>
     <hr>
@@ -167,19 +208,21 @@ hr {
         <div id="onUserStatusChanged"></div>
     </div>
 
-    <div style="margin-top: 20px;position: absolute;bottom: 0;background: white; padding-bottom: 20px; width: 94%">
-        <div id="conversation-panel"></div>
-        <div id="key-press" style="text-align: right; display: none; font-size: 11px;">
-            <span style="vertical-align: middle;"></span>
-            <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
-        </div>
-        <textarea id="txt-chat-message"></textarea>
-        <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
-        <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File">
-        <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
-    </div>
+    
 
     <canvas id="temp-stream-canvas" style="display: none;"></canvas>
+</div>
+
+<div style="margin-top: 20px;position: absolute;bottom: 0;background: rgb(155, 155, 155); padding-bottom: 20px; width: 100%">
+    <div id="conversation-panel"></div>
+    <div id="key-press" style="text-align: right; display: none; font-size: 11px;">
+        <span style="vertical-align: middle;"></span>
+        <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
+    </div>
+    <textarea id="txt-chat-message"></textarea>
+    <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
+    <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File">
+    <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
 </div>
 </article>
 
@@ -221,7 +264,7 @@ connection.maxParticipantsAllowed = 1000;
 var designer = new CanvasDesigner();
 
 // you can place widget.html anywhere
-// designer.widgetHtmlURL = '/node_modules/canvas-designer/widget.html';
+ //designer.widgetHtmlURL = '/node_modules/canvas-designer/widget.html';
 // designer.widgetJsURL = '/node_modules/canvas-designer/widget.min.js'
 
 // designer.addSyncListener(function(data) {
@@ -346,11 +389,11 @@ connection.onmessage = function(event) {
     }
 
     if (event.data === 'plz-sync-points') {
-        designer.sync();
+      //  designer.sync();
         return;
     }
 
-    designer.syncData(event.data);
+   // designer.syncData(event.data);
 };
 
 // extra code
@@ -790,5 +833,8 @@ $('#btn-share-screen').click(function() {
     }
 });
 </script>
+
+<script src="/meeting/js/plugins.min.js"></script>
+    <script src="/meeting/js/app.js"></script>
 </body>
 </html>
